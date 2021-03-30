@@ -1,0 +1,151 @@
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
+const Home = () => {
+
+
+    const [fitb, setFitb] = useState()
+    const [input, setInput] = useState([])
+    const [names, setNames] = useState([])
+    // const [value, setValue] = useState([])
+
+
+    const barrens = '/sets/Forged%20in%20the%20Barrens'
+
+    const options = {
+        method: 'GET',
+        url: `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards${barrens}`,
+        headers: {
+            'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+            'x-rapidapi-host': process.env.REACT_APP_API_HOST
+        }
+    };
+
+    //check
+    useEffect(() => {
+        axios.request(options).then(res => {
+            // console.log(res.data);
+            setFitb(res.data)
+
+        }).catch((error) => {
+            console.error(error);
+        });
+
+    }, [])
+
+    // console.log(fitb)
+
+
+    const allCardNames = []
+
+    const allCardImages = []
+
+
+    if (fitb) {
+        fitb.map(cards => {
+            // console.log(cards)
+            // allCardNames.push(Object.values(cards)[2])
+
+            allCardNames.push(cards.name)
+            allCardImages.push(cards.img)
+
+        })
+    }
+
+    const handleChange = (e) => {
+        setNames(e.target.value);
+    }
+
+
+    const results = []
+
+    //save search
+
+    const searchField = []
+
+    console.log(names)
+
+
+    const defaultProps = {
+        options: allCardNames,
+        getOptionLabel: (option) => option,
+    };
+
+    return (
+        <>
+
+
+            <form>
+
+                {/* <Autocomplete
+                    id="combo-box-demo"
+                    options={allCardNames}
+                    getOptionLabel={(option) => {
+                        // results.push(option)
+                        // console.log(option)
+                        return option
+                    }}
+                    style={{
+                        width: 300,
+                        margin: '0 auto'
+                    }}
+                    renderInput={(params) => {
+                        searchField.push(params)
+
+
+                        return <TextField {...params} label="Search Cards" variant="outlined" />
+                    }
+                    }
+
+                    onChange={handleChange}
+                // value={names}
+
+
+                /> */}
+
+
+
+                <Autocomplete
+                    {...defaultProps}
+                    id="include-input-in-list"
+                    includeInputInList
+                    renderInput={(params) => (
+                        <TextField {...params} label="includeInputInList" margin="normal" />
+                    )}
+                />
+                <input value={names} onChange={handleChange} options={allCardNames}></input>
+
+                {fitb && (
+                    fitb.map(cards => {
+
+
+                        // allCardNames.push(Object.values(cards)[2])
+
+
+                        const getCards = (cards) => {
+
+
+
+                            return <img src={cards.img} />
+
+                        }
+
+                        getCards(cards)
+
+
+                    }))
+                }
+
+
+                <h1>{input}</h1>
+                <h1>{results}</h1>
+
+            </form>
+        </>
+    )
+}
+
+export default Home
