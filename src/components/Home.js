@@ -26,7 +26,6 @@ const Home = () => {
     //check
     useEffect(() => {
         axios.request(options).then(res => {
-            // console.log(res.data);
             setFitb(res.data)
 
         }).catch((error) => {
