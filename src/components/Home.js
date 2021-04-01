@@ -62,7 +62,7 @@ const Home = () => {
 
     const results = []
 
-    //save search
+
 
     const searchField = []
 
@@ -73,6 +73,8 @@ const Home = () => {
         options: allCardNames,
         getOptionLabel: (option) => option,
     };
+
+    //redo search bar since it doesn't add input to saved list
 
     return (
         <>
