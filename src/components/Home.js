@@ -5,6 +5,12 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const Home = () => {
 
+    //change search bar
+    //use .filter method and push the results to array, display that array as list
+    // of cards
+
+
+
 
     const [fitb, setFitb] = useState()
     const [input, setInput] = useState([])
