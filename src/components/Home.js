@@ -29,7 +29,7 @@ const Home = () => {
         }
     };
 
-    //check
+
     useEffect(() => {
         axios.request(options).then(res => {
             setFitb(res.data)
