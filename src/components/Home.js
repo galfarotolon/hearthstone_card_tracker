@@ -47,7 +47,7 @@ const Home = () => {
 
     const allCardImages = []
 
-
+    //check the current expansion, if its not empty, map through it
     if (fitb) {
         fitb.map(cards => {
             // console.log(cards)
