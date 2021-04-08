@@ -6,7 +6,7 @@ function App() {
 
 
 
-
+  //main render for all app
 
   return (
     <div className="App">
