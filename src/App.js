@@ -5,7 +5,7 @@ import Home from './components/Home'
 function App() {
 
 
-  //check return
+
   return (
     <div className="App">
       <h1>Hearthstone Card Tracker for Expansion Opening</h1>
