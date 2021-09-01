@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import SearchBar from './SearchBar.js'
+import LeftPanel from './LeftPanel'
 
 const Home = () => {
 
@@ -12,13 +15,16 @@ const Home = () => {
 
 
     const [fitb, setFitb] = useState()
+    const [uis, setUis] = useState([])
     const [input, setInput] = useState([])
     const [names, setNames] = useState([])
     // const [value, setValue] = useState([])
 
 
     const barrens = '/sets/Forged%20in%20the%20Barrens'
+    const stormwind = '/sets/United%20in%20Stormwind'
 
+    //barrens
     const options = {
         method: 'GET',
         url: `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards${barrens}`,
@@ -29,9 +35,59 @@ const Home = () => {
     };
 
 
+    //stormwind
+    const optsStormwind = {
+        method: 'GET',
+        url: `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards${stormwind}`,
+        headers: {
+            'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+            'x-rapidapi-host': process.env.REACT_APP_API_HOST
+        }
+    };
+
+
+    // for cardbacks
+    const opts = {
+
+        method: 'GET',
+        url: `https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks`,
+        headers: {
+            'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+            'x-rapidapi-host': process.env.REACT_APP_API_HOST
+        }
+
+    }
+
+
+    //get cardbacks
+    useEffect(() => {
+        axios.request(opts).then(res => {
+            console.log(res)
+
+        }).catch((error) => {
+            console.error(error);
+        });
+
+    }, [])
+
+
+    //barrens
     useEffect(() => {
         axios.request(options).then(res => {
             setFitb(res.data)
+
+        }).catch((error) => {
+            console.error(error);
+        });
+
+    }, [])
+
+
+    //stormwind
+    useEffect(() => {
+        axios.request(optsStormwind).then(res => {
+            setUis(res.data)
+            console.log(res.data)
 
         }).catch((error) => {
             console.error(error);
@@ -82,6 +138,13 @@ const Home = () => {
     return (
         <>
 
+            <LeftPanel />
+
+            <MainContainer>
+                <Header>Hearthstone Card Tracker for Expansion Opening</Header>
+                <SearchBar setNames={setNames} data={allCardNames} fitb={fitb} />
+
+            </MainContainer>
 
             <form>
 
@@ -111,14 +174,14 @@ const Home = () => {
 
                 /> */}
 
-
+                {/* 
 
                 <Autocomplete
                     {...defaultProps}
                     id="include-input-in-list"
                     includeInputInList
                     renderInput={(params) => (
-                        <TextField {...params} label="includeInputInList" margin="normal" />
+                        <TextField {...params} label="Search cards..." margin="normal" />
                     )}
                 />
                 <input value={names} onChange={handleChange} options={allCardNames}></input>
@@ -146,7 +209,7 @@ const Home = () => {
 
 
                 <h1>{input}</h1>
-                <h1>{results}</h1>
+                <h1>{results}</h1> */}
 
             </form>
         </>
@@ -154,3 +217,16 @@ const Home = () => {
 }
 
 export default Home
+
+const MainContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 100%;
+
+`
+
+const Header = styled.h1`
+width: 50%;
+`

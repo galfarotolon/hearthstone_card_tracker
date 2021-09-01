@@ -1,6 +1,7 @@
 
 import './App.css';
 import Home from './components/Home'
+import styled from 'styled-components'
 
 function App() {
 
@@ -8,10 +9,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hearthstone Card Tracker for Expansion Opening</h1>
       <Home />
     </div>
   );
 }
 
 export default App;
+
