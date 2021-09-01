@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SearchField from 'react-search-field';
 import styled from 'styled-components'
 
@@ -6,25 +6,53 @@ const SearchBar = ({ data, fitb }) => {
 
 
     const [searchTerm, setSearchTerm] = useState('')
+    const [newObj, setNewObj] = useState([])
 
-    console.log(fitb)
+    // console.log(fitb)
 
 
     const noDupes = [...new Set(data)]
 
-    console.log(noDupes)
+    // console.log(noDupes)
 
-    //iterate thru noDupes
-    //if noDupes element (name) appears, grab first occurences' object
-    //return that object's name/image
 
+
+    let check;
+    let newArr = []
 
     const clearDupeObjects = noDupes.map(cardName => {
 
-        const check = fitb.find(obj => obj.name === cardName)
-
+        check = fitb.find(obj => obj.name === cardName)
         return check
     })
+
+
+
+    // have to figure out how to grab the new object with images, and use that to add into an array and loop through the render
+
+    useEffect(() => {
+        clearDupeObjects.map(el => {
+
+            setNewObj({ ...check, newImg: `https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${el.cardId}.png` })
+
+            console.log(newObj)
+            newArr.push(newObj)
+
+        })
+
+        console.log(newArr)
+
+    }, [])
+
+
+
+
+    // const locale = 'enUS'
+    // const res = '256x'
+    // const id = 'WC_701'
+    // const ext = 'png'
+
+    // const link = `https://art.hearthstonejson.com/v1/render/latest/enUS/256x/BOM_02_Octobot_007hb.png`
 
     return (
         <>

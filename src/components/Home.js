@@ -62,7 +62,7 @@ const Home = () => {
     //get cardbacks
     useEffect(() => {
         axios.request(opts).then(res => {
-            console.log(res)
+            // console.log(res)
 
         }).catch((error) => {
             console.error(error);
@@ -87,7 +87,7 @@ const Home = () => {
     useEffect(() => {
         axios.request(optsStormwind).then(res => {
             setUis(res.data)
-            console.log(res.data)
+            // console.log(res.data)
 
         }).catch((error) => {
             console.error(error);
@@ -125,7 +125,7 @@ const Home = () => {
 
     const searchField = []
 
-    console.log(names)
+    // console.log(names)
 
 
     const defaultProps = {
