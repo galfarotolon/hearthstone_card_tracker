@@ -30,7 +30,6 @@ const SearchBar = ({ data, fitb }) => {
 
     // have to figure out how to grab the new object with images, and use that to add into an array and loop through the render
 
-    //check
     useEffect(() => {
         clearDupeObjects.map(el => {
 
