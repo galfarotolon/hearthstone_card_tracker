@@ -8,13 +8,7 @@ const SearchBar = ({ data, fitb }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [newObj, setNewObj] = useState([])
 
-    // console.log(fitb)
-
-
     const noDupes = [...new Set(data)]
-
-    // console.log(noDupes)
-
 
 
     let check;
