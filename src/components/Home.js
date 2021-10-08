@@ -95,9 +95,6 @@ const Home = () => {
 
     }, [])
 
-    // console.log(fitb)
-
-
     const allCardNames = []
 
     const allCardImages = []
