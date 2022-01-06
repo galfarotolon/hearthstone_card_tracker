@@ -96,6 +96,7 @@ const Home = () => {
     }, [])
 
     const allCardNames = []
+    //check
 
     const allCardImages = []
 
