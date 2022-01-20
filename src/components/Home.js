@@ -46,7 +46,7 @@ const Home = () => {
     };
 
 
-    // for cardbacks
+
     const opts = {
 
         method: 'GET',
