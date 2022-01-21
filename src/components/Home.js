@@ -46,7 +46,7 @@ const Home = () => {
     };
 
 
-
+    //card backs
     const opts = {
 
         method: 'GET',
