@@ -8,6 +8,7 @@ import LeftPanel from './LeftPanel'
 
 const Home = () => {
 
+    //new imports soon from @mui
     //change search bar
     //use .filter method and push the results to array, display that array as list of cards
 
