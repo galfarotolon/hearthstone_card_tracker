@@ -10,10 +10,6 @@ const Home = () => {
 
     //new imports soon from @mui
 
-    //use .filter method and push the results to array, display that array as list of cards
-
-
-
 
     const [fitb, setFitb] = useState()
     const [uis, setUis] = useState([])
