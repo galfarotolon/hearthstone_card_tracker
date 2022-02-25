@@ -9,7 +9,6 @@ import LeftPanel from './LeftPanel'
 const Home = () => {
 
     //new imports soon from @mui
-    //check
 
 
     const [fitb, setFitb] = useState()
